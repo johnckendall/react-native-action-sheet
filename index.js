@@ -12,34 +12,36 @@ const Button = require('./button.js');
 const Overlay = require('./overlay.js');
 const Sheet = require('./sheet.js');
 
-module.exports = React.createClass({
-    getDefaultProps: function () {
-        return {
-            cancelText: 'Cancel',
-        };
-    },
-    render () {
-        return (
-            <Overlay visible={this.props.visible}>
-                <View style={styles.actionSheetContainer}>
-                    <TouchableOpacity
-                        style={{ flex:1 }}
-                        onPress={this.props.onCancel} />
-                    <Sheet visible={this.props.visible}>
-                        <View style={styles.buttonContainer}>
-                            {this.props.children}
-                        </View>
-                        <Button
-                            buttonStyle={{ marginTop:6, borderRadius:6 }}
-                            textStyle={{ color:'red' }}
-                            onPress={this.props.onCancel}>{this.props.cancelText}</Button>
-                    </Sheet>
-                </View>
-            </Overlay>
-        );
-    },
-});
-module.exports.Button = Button;
+class RemobileActionSheet extends React.Component {
+  static defaultProps={
+    cancelText: 'Cancel',
+  }
+  getDefaultProps(){
+    return myprops;
+  }
+  render () {
+    return (
+        <Overlay visible={this.props.visible}>
+            <View style={styles.actionSheetContainer}>
+                <TouchableOpacity
+                    style={{ flex:1 }}
+                    onPress={this.props.onCancel} />
+                <Sheet visible={this.props.visible}>
+                    <View style={styles.buttonContainer}>
+                        {this.props.children}
+                    </View>
+                    <Button
+                        buttonStyle={{ marginTop:6, borderRadius:6 }}
+                        textStyle={{ color:'red' }}
+                        onPress={this.props.onCancel}>{this.props.cancelText}</Button>
+                </Sheet>
+            </View>
+        </Overlay>
+    );
+  }
+}
+module.exports=RemobileActionSheet;
+module.exports.Button=Button;
 
 const styles = StyleSheet.create({
     actionSheetContainer: {
